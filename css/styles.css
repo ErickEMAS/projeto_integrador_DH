@@ -1,4 +1,7 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
+Footer {
+    bottom: 0;
+    background-color: gray;
+    position: fixed;
+    width: 100%;
+    text-align: center;
 }
