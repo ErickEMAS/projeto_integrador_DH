@@ -3,10 +3,13 @@
     src: url('../fonts/Valorant\ Font.ttf');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
+
 body {
     background-image: url('../img/mobilebg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #1a1a1a;
 }
 
 header {
@@ -21,19 +24,54 @@ h1 {
     font-size: 3rem;
 }
 
-.content-1{
+.home-section-1{
     height: 100vh;
     width: 100%;
 }
 
-.content-1 h2{
-    font-family: Roboto;
-    font-style: normal;
+.home-section-2{
+    height: 100vh;
+    width: 100%;
+}
+
+
+.home-section-1 h2{
+    font-family: 'Roboto', sans-serif;
     font-weight: 900;
-    font-size: 3.3rem;
+    font-size: 11vw;
     line-height: 56px;
 }
 
+.rectangle{
+    width: 70vw;
+    height: 70vw;
+    background: #323030;
+    border-radius: 8px;
+}
+
+.rectangle h3{
+    font-family: valor, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 28px;
+    text-align: center;
+}
+
+.rectangle p{
+    font-family: Roboto;
+    margin: 5% auto;
+}
+
+.rectangle button{
+    width: 90%;
+    height: 34px;
+    border: none;
+    background: #1a1a1a;
+    box-shadow: 0px 1.92354px 2.74791px rgba(30, 30, 30, 0.76), 0px 4.86478px 6.94968px rgba(30, 30, 30, 0.524386), 0px 9.92369px 14.1767px rgba(30, 30, 30, 0.422781), 0px 20.4409px 29.2013px rgba(30, 30, 30, 0.337219), 0px 56px 80px rgba(30, 30, 30, 0.235614);
+    border-radius: 4px;
+    
+}
 
 Footer {
     bottom: 0;
