@@ -6,10 +6,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
 
 body {
-    background-image: url('../img/mobilebg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
     background-color: #1a1a1a;
+}
+
+.background{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    width: 100vw;
+}
+
+.background img{
+    width: 100%;
 }
 
 header {
