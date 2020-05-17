@@ -1,3 +1,8 @@
+@font-face {
+    font-family: valor;
+    src: url('../fonts/Valorant\ Font.ttf');
+}
+
 body {
     background-image: url('../img/mobilebg.jpg');
     background-repeat: no-repeat;
