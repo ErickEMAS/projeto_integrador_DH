@@ -43,6 +43,20 @@ h1 {
     width: 100%;
 }
 
+.home-section-3{
+    width: 100%;
+}
+
+.home-section-3 div{
+    width: 90%;
+}
+
+
+.home-section-3 h3{
+    font-family: 'Roboto', sans-serif;
+    font-size: 5vw;
+    color: #FDD700;
+}
 
 .home-section-1 h2{
     font-family: 'Roboto', sans-serif;
@@ -100,7 +114,6 @@ Footer {
 .svg-eye{
     width: 9.5vw;
     height: 8vw;
-
 }
 
 .svg-bar{
@@ -111,4 +124,5 @@ Footer {
 .svg-attention{
     width: 10%;
     height: 10%;
+    margin-right: 10px;
 }
