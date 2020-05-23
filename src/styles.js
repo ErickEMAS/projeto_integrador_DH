@@ -3,20 +3,18 @@ import styled, { createGlobalStyle } from "styled-components";
 import fonts from "./fonts";
 import { colors } from "./variables";
 
-import bgImage from "./assets/images/bg.png";
-
 export const GlobalStyle = createGlobalStyle`
   * {
     outline: none;
-  }
-  html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100%;
     font-family: ${fonts.Roboto};
-    background: url(${bgImage}) no-repeat top center ${colors.bgColor};
-    background-size: cover;
+    color: ${colors.light};
+  }
+  html, body {
+    height: 100%;
+    background-color: ${colors.bgColor};
   }
   #root {
     height: 100%;
@@ -35,9 +33,18 @@ export const InternalContainer = styled.div`
 export const Bar = styled.div`
   width: 100%;
   height: 4px;
-  background: ${colors.light};
+  background: ${(props) => props.color ?? colors.light};
   margin: 10px 0 15px 0;
   border-radius: 3px;
+`;
+
+export const BarSpaced = styled(Bar)`
+  margin-bottom: 30px;
+`;
+
+export const SmallBar = styled(Bar)`
+  width: 25%;
+  margin-bottom: 10px;
 `;
 
 export const Button = styled.button`
@@ -61,4 +68,23 @@ export const Button = styled.button`
     opacity: 0.5;
     cursor: pointer;
   }
+`;
+
+export const SimpleButton = styled(Button)`
+  margin: 0;
+  box-shadow: none;
+`;
+
+export const Input = styled.input.attrs({
+  type: "text",
+})`
+  width: 100%;
+  padding: 7px 0 7px 10px;
+  background: ${colors.gray};
+  color: ${colors.dark};
+  font-size: 15px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 3px;
+  letter-spacing: 2px;
 `;

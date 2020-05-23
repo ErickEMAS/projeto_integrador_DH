@@ -1,29 +1,31 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 import fonts from "../../fonts";
 import { colors } from "../../variables";
 
+import bgImage from "../../assets/images/bg.png";
 import alertIcon from "../../assets/images/alert-icon.png";
+
+export const HomeGlobalStyle = createGlobalStyle`
+  html, body {
+    background: url(${bgImage}) no-repeat top center ${colors.bgColor} !important;
+    background-size: cover;
+  }
+`;
 
 export const SeeYourStatisticsContainer = styled.div`
   position: relative;
   top: 30vw;
-  padding: 0 20px;
+  margin: 0 20px;
 `;
 
 export const SeeYourStatisticsTitle = styled.p`
-  margin: 0;
-  color: ${colors.light};
-  font-family: ${fonts.Roboto};
   font-size: 48px;
   font-weight: 900;
   text-align: left;
 `;
 
 export const SeeYourStatisticsDescription = styled.p`
-  margin: 0;
-  color: ${colors.light};
-  font-family: ${fonts.Roboto};
   font-size: 16px;
 `;
 
@@ -34,7 +36,7 @@ export const WarningContainer = styled.div`
 export const WarningTextContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 0 0 22px;
+  margin-bottom: 22px;
 `;
 
 export const WarningIcon = styled.img.attrs({
@@ -43,7 +45,6 @@ export const WarningIcon = styled.img.attrs({
 
 export const WarningText = styled.p`
   color: ${colors.yellow};
-  font-family: ${fonts.Roboto};
   font-weight: 500;
   font-size: 11px;
   margin-left: 5px;

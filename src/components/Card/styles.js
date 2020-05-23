@@ -19,7 +19,7 @@ export const CardTitle = styled.p`
   font-family: ${fonts.Valorant};
   font-size: 25px;
   font-weight: normal;
-  margin: 0 0 10px;
+  margin-bottom: 10px;
 `;
 
 export const CardTitleBig = styled(CardTitle)`
@@ -27,6 +27,5 @@ export const CardTitleBig = styled(CardTitle)`
 `;
 
 export const CardDescription = styled.p`
-  font-family: ${fonts.Roboto};
   font-size: 12px;
 `;

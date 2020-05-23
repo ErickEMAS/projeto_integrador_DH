@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import Card from "../../components/Card";
 
 import {
+  HomeGlobalStyle,
   SeeYourStatisticsContainer,
   SeeYourStatisticsTitle,
   SeeYourStatisticsDescription,
@@ -50,6 +51,7 @@ export default function Home() {
           </WarningContainer>
         </InternalContainer>
       </SeeYourStatisticsContainer>
+      <HomeGlobalStyle />
     </>
   );
 }
