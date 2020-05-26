@@ -1,0 +1,93 @@
+@font-face {
+    font-family: valor;
+    src: url('../fonts/Valorant\ Font.ttf');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap');
+
+body {
+    background-color: #1a1a1a;
+}
+
+.btn-square {
+    margin-top: 50px;
+    width: 80%;
+    height: 15%;
+    border: none;
+    background: #1a1a1a;
+    box-shadow: 0px 1.92354px 2.74791px rgba(30, 30, 30, 0.76), 0px 4.86478px 6.94968px rgba(30, 30, 30, 0.524386), 0px 9.92369px 14.1767px rgba(30, 30, 30, 0.422781), 0px 20.4409px 29.2013px rgba(30, 30, 30, 0.337219), 0px 56px 80px rgba(30, 30, 30, 0.235614);
+    border-radius: 4px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+
+
+    text-align: center;
+}
+
+
+
+.stats-text {
+    margin-top: 119px;
+    width: 204px;
+    height: 110px;
+    left: 43px;
+    top: 119px;
+
+    font-family: valor;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 55px;
+
+    color: #FFFFFF;
+}
+
+.svg-bar-myStats{
+    width: 81%;
+    height: 10%;
+}
+
+.substats-text {
+    width: 234px;
+    height: 16px;
+    left: 42px;
+    top: 233px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #FFFFFF;
+}
+
+input {
+    margin-top: 50px;
+    width: 229px;
+    height: 32px;
+    left: 47px;
+    top: 313px;
+
+    background: #C4C4C4;
+    border-radius: 3px;
+}
+
+button {
+    width: 193px;
+    height: 34px;
+    left: 64px;
+    top: 405px;
+
+    background: #202020;
+    border-radius: 4px;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
