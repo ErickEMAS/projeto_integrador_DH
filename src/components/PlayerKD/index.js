@@ -7,17 +7,17 @@ import {
   GraphicCount,
 } from "../../styles";
 
-import target from "../../assets/images/target.png";
+import playerTarget from "../../assets/images/player-target.png";
 
-export default function PlayerAccuracy({
+export default function PlayerKD({
   accuracyPercentage,
   positiveColor,
   negativeColor,
 }) {
   return (
     <GraphicContainer>
-      <GraphicIcon src={target} alt="Target icon" />
-      <GraphicTitle>Precisão do tiro</GraphicTitle>
+      <GraphicIcon src={playerTarget} alt="Player target icon" />
+      <GraphicTitle>K/D</GraphicTitle>
       {accuracyPercentage.length ? (
         accuracyPercentage.map((item, index) => {
           return (
@@ -28,9 +28,9 @@ export default function PlayerAccuracy({
         })
       ) : (
         <GraphicCount
-          accuracyPercentage={accuracyPercentage}
-          positiveColor={positiveColor}
-          negativeColor={negativeColor}
+        // accuracyPercentage={accuracyPercentage}
+        // positiveColor={positiveColor}
+        // negativeColor={negativeColor}
         >
           <p>{accuracyPercentage.toFixed(0)}%</p>
         </GraphicCount>

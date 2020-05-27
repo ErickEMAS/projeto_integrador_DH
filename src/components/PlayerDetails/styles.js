@@ -5,6 +5,7 @@ export const PlayerDetailsContainer = styled.div``;
 export const PlayerImageRounded = styled.img`
   width: 115px;
   height: 115px;
+  border-radius: 100%;
 `;
 
 export const PlayerImageRoundedSmaller = styled(PlayerImageRounded)`
@@ -14,7 +15,7 @@ export const PlayerImageRoundedSmaller = styled(PlayerImageRounded)`
 `;
 
 export const PlayerName = styled.p`
-  margin-top: 15px;
-  font-size: 18px;
+  margin-top: 5px;
+  font-size: 20px;
   font-weight: bold;
 `;

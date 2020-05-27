@@ -9,7 +9,6 @@ import {
 } from "./styles";
 
 import skull from "../../assets/images/skull.png";
-import sniper from "../../assets/images/sniper.png";
 // import knife from "../../assets/images/knife.png";
 // import bullet from "../../assets/images/bullet.png";
 
@@ -22,37 +21,47 @@ export default function PlayerKills({ killsData }) {
         killsData.map((item, index) => {
           return (
             <div key={index}>
-              <KillsCount>{item.kills}</KillsCount>
-              <KillsStatsContainer>
-                <img src={sniper} alt="Sniper icon" />
-                <KillsTextGeneral>{item.sniper} sniper</KillsTextGeneral>
-              </KillsStatsContainer>
-              <KillsStatsContainer>
-                <img src={sniper} alt="Knife icon" />
-                <KillsTextGeneral>{item.knife} knife</KillsTextGeneral>
-              </KillsStatsContainer>
-              <KillsStatsContainer>
-                <img src={sniper} alt="Headshot icon" />
-                <KillsTextGeneral>{item.headshots} headshots</KillsTextGeneral>
-              </KillsStatsContainer>
+              <KillsCount>{item.totalKills}</KillsCount>
+              {item.weaponsKills.length
+                ? item.weaponsKills.map((weapon, idx) => {
+                    if (weapon.kills) {
+                      return (
+                        <KillsStatsContainer key={idx}>
+                          <img
+                            src={`${weapon.name}.png`}
+                            alt={`${weapon.name}icon`}
+                          />
+                          <KillsTextGeneral>
+                            {weapon.kills + " " + weapon.name}
+                          </KillsTextGeneral>
+                        </KillsStatsContainer>
+                      );
+                    }
+                  })
+                : ""}
             </div>
           );
         })
       ) : (
         <>
-          <KillsCount>{killsData.kills}</KillsCount>
-          <KillsStatsContainer>
-            <img src={sniper} alt="Sniper icon" />
-            <KillsTextGeneral>{killsData.sniper} sniper</KillsTextGeneral>
-          </KillsStatsContainer>
-          <KillsStatsContainer>
-            <img src={sniper} alt="Knife icon" />
-            <KillsTextGeneral>{killsData.knife} knife</KillsTextGeneral>
-          </KillsStatsContainer>
-          <KillsStatsContainer>
-            <img src={sniper} alt="Headshot icon" />
-            <KillsTextGeneral>{killsData.headshots} headshots</KillsTextGeneral>
-          </KillsStatsContainer>
+          <KillsCount>{killsData.totalKills}</KillsCount>
+          {killsData.weaponsKills.length
+            ? killsData.weaponsKills.map((weapon, index) => {
+                if (weapon.kills) {
+                  return (
+                    <KillsStatsContainer key={index}>
+                      <img
+                        src={`${weapon.name}.png`}
+                        alt={`${weapon.name}icon`}
+                      />
+                      <KillsTextGeneral>
+                        {weapon.kills + " " + weapon.name}
+                      </KillsTextGeneral>
+                    </KillsStatsContainer>
+                  );
+                }
+              })
+            : ""}
         </>
       )}
     </KillsContainer>

@@ -5,12 +5,36 @@ import Footer from "../../components/Footer";
 import PlayerDetails from "../../components/PlayerDetails";
 import PlayerKills from "../../components/PlayerKills";
 import PlayerAccuracy from "../../components/PlayerAccuracy";
+import PlayerKD from "../../components/PlayerKD";
+import PlayerFavoriteWeapon from "../../components/PlayerFavoriteWeapon";
+import PlayerUptime from "../../components/PlayerUptime";
+import PlayerMapMostPlayed from "../../components/PlayerMapMostPlayed";
 
 import { StatisticsDetailsContainer, StatisticsDetailsTitle } from "./styles";
+import { colors } from "../../variables";
 
-import playerImage from "../../assets/images/player-1.png";
+import player from "../../assets/json/player.json";
+// import map from "../../assets/json/maps.json";
 
 export default function Statistics() {
+  console.log(player.data);
+  const {
+    platformInfo: { avatarUrl: playerImage, platformUserHandle: playerName },
+    segments: {
+      0: {
+        stats: {
+          kills: { value: totalKills },
+          snipersKilled: { value: sniperKills },
+          headshots: { value: headshotsKills },
+          shotsAccuracy: { value: accuracyPercentage },
+          kd: { value: kdPercentage },
+          timePlayed: { value: timePlayed },
+        },
+      },
+    },
+    knifeKills,
+  } = player.data;
+
   return (
     <>
       <Header />
@@ -20,15 +44,53 @@ export default function Statistics() {
           <br />
           estatisticas
         </StatisticsDetailsTitle>
-        <PlayerDetails image={playerImage} name="Matheuzinhodograu123" winner />
+        <PlayerDetails image={playerImage} name={playerName} winner />
         <PlayerKills
-          killsData={{ kills: 123, sniper: 230, knife: 143, headshots: 426 }}
+          killsData={{
+            totalKills,
+            weaponsKills: [
+              {
+                name: "sniper",
+                kills: sniperKills,
+              },
+              {
+                name: "knife",
+                kills: knifeKills,
+              },
+              {
+                name: "headshots",
+                kills: headshotsKills,
+              },
+            ],
+          }}
         />
         {/* <PlayerKills killsData={[{ kills: 43 }, { kills: 888 }]} /> */}
-        <PlayerAccuracy accuracyPercentage={62} />
-        <PlayerAccuracy accuracyPercentage={12} />
-        <PlayerAccuracy accuracyPercentage={50} />
-        <PlayerAccuracy accuracyPercentage={36} />
+        <PlayerAccuracy
+          accuracyPercentage={accuracyPercentage}
+          positiveColor={colors.yellow}
+          negativeColor={colors.yellowDark}
+        />
+        <PlayerKD
+          accuracyPercentage={kdPercentage}
+          positiveColor={colors.red}
+          negativeColor={colors.redDark}
+        />
+        <PlayerFavoriteWeapon
+          favoriteWeapon={{
+            key: "ak47",
+            name: "AK-47",
+            imageUrl:
+              "https://trackercdn.com/cdn/tracker.gg/csgo/weapons/197_icon-ak47.png",
+          }}
+        />
+        <PlayerUptime timePlayed={timePlayed} />
+        <PlayerMapMostPlayed
+          mapMostPlayed={{
+            name: "Dust",
+            imageUrl:
+              "https://trackercdn.com/cdn/tracker.gg/csgo/maps/de_dust.jpg",
+          }}
+        />
       </StatisticsDetailsContainer>
       <Footer buttonText="Tente novamente" />
     </>

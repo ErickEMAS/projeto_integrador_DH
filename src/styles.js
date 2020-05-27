@@ -19,6 +19,10 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
   }
+  p {
+    font-size: 18px;
+    font-weight: medium;
+  }
 `;
 
 export const Container = styled.div`
@@ -87,4 +91,49 @@ export const Input = styled.input.attrs({
   border: 0;
   border-radius: 3px;
   letter-spacing: 2px;
+`;
+
+export const GraphicContainer = styled.div`
+  margin-top: 50px;
+`;
+
+export const GraphicIcon = styled.img`
+  width: 35px;
+`;
+
+export const GraphicTitle = styled.p`
+  color: ${colors.yellow};
+  font-size: 20px;
+  text-transform: uppercase;
+  margin: 5px 0 20px;
+`;
+
+export const GraphicCount = styled.div`
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  border: double 9px transparent;
+  background-image: linear-gradient(${colors.bgColor}, ${colors.bgColor}),
+    linear-gradient(
+      ${(props) => (props.accuracyPercentage >= 50 ? "180deg" : "0deg")},
+      ${(props) =>
+        props.accuracyPercentage >= 50
+          ? `${props.positiveColor} ${props.accuracyPercentage}%`
+          : `${props.negativeColor} ${100 - props.accuracyPercentage}%`},
+      ${(props) =>
+        props.accuracyPercentage >= 50
+          ? `${props.negativeColor} ${props.accuracyPercentage}%`
+          : `${props.positiveColor} ${100 - props.accuracyPercentage}%`}
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    color: ${colors.yellow};
+    font-size: 35px;
+    font-weight: bold;
+  }
 `;
