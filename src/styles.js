@@ -46,9 +46,20 @@ export const BarSpaced = styled(Bar)`
   margin-bottom: 30px;
 `;
 
+export const MediumBar = styled(Bar)`
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+`;
+
 export const SmallBar = styled(Bar)`
   width: 25%;
   margin-bottom: 10px;
+`;
+
+export const SmallBarCentered = styled(SmallBar)`
+  margin: 5px auto 0;
 `;
 
 export const Button = styled.button`
@@ -111,7 +122,7 @@ export const GraphicTitle = styled.p`
 export const GraphicCount = styled.div`
   width: 120px;
   height: 120px;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   border: double 9px transparent;
   background-image: linear-gradient(${colors.bgColor}, ${colors.bgColor}),
     linear-gradient(
@@ -133,7 +144,7 @@ export const GraphicCount = styled.div`
   align-items: center;
   p {
     color: ${colors.yellow};
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
   }
 `;

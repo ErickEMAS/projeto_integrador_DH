@@ -16,7 +16,7 @@ import { colors } from "../../variables";
 import player from "../../assets/json/player.json";
 // import map from "../../assets/json/maps.json";
 
-export default function Statistics() {
+export default function StatisticsResult() {
   console.log(player.data);
   const {
     platformInfo: { avatarUrl: playerImage, platformUserHandle: playerName },
@@ -24,6 +24,7 @@ export default function Statistics() {
       0: {
         stats: {
           kills: { value: totalKills },
+          deaths: { value: totalDeaths },
           snipersKilled: { value: sniperKills },
           headshots: { value: headshotsKills },
           shotsAccuracy: { value: accuracyPercentage },
@@ -64,7 +65,6 @@ export default function Statistics() {
             ],
           }}
         />
-        {/* <PlayerKills killsData={[{ kills: 43 }, { kills: 888 }]} /> */}
         <PlayerAccuracy
           accuracyPercentage={accuracyPercentage}
           positiveColor={colors.yellow}
@@ -74,6 +74,8 @@ export default function Statistics() {
           accuracyPercentage={kdPercentage}
           positiveColor={colors.red}
           negativeColor={colors.redDark}
+          kills={totalKills}
+          deaths={totalDeaths}
         />
         <PlayerFavoriteWeapon
           favoriteWeapon={{
