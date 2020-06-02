@@ -5,3 +5,11 @@ export const FavoriteWeaponImage = styled.img`
   max-width: 96px;
   margin-bottom: 10px;
 `;
+
+export const PlayerFavoriteWeaponVersusContainer = styled.div`
+  display: flex;
+`;
+
+export const PlayerFavoriteWeaponVersusItem = styled.div`
+  flex: 1;
+`;

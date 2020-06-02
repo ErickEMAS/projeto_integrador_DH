@@ -39,7 +39,9 @@ export default function Statistics() {
           value={steamID}
         />
         <Button>
-          <Link to="statisticsResult">Resultado</Link>
+          <Link to={{ pathname: "/statisticsResult", playerID: steamID }}>
+            Resultado
+          </Link>
         </Button>
       </StatisticsContainer>
       <Footer />
