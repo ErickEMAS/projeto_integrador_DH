@@ -22,15 +22,13 @@ import loadingAnimationData from "../../assets/json/loading.json";
 export default function VersusResult() {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
-  // const { player1ID, player2ID } = useLocation();
-  const player1ID = "76561198008049283";
-  const player2ID = "76561197995625001";
+  const { playerID1, playerID2 } = useLocation();
 
   const [players, setPlayers] = useState([]);
 
   function getPlayer() {
-    if (player1ID && player2ID) {
-      getPlayers([player1ID, player2ID]);
+    if (playerID1 && playerID2) {
+      getPlayers([playerID1, playerID2]);
     } else {
       history.push("/versus");
     }
@@ -38,67 +36,85 @@ export default function VersusResult() {
 
   async function getPlayers(playerIDs) {
     const players = await playerIDs.map(async (playerID, index) => {
-      return await api.get(playerID).then(async (res) => {
-        if (res && res.status === 200 && res.data && res.data.data) {
-          const {
-            platformInfo: {
-              avatarUrl: playerImage,
-              platformUserHandle: playerName,
-            },
-            segments: {
-              0: {
-                stats: {
-                  kills: { value: totalKills },
-                  deaths: { value: totalDeaths },
-                  snipersKilled: { value: sniperKills },
-                  headshots: { value: headshotsKills },
-                  shotsAccuracy: { value: accuracyPercentage },
-                  kd: { displayValue: kdPercentage },
-                  timePlayed: { value: timePlayed },
+      return await api
+        .get(playerID)
+        .then(async (res) => {
+          if (res && res.status === 200 && res.data && res.data.data) {
+            const {
+              platformInfo: {
+                avatarUrl: playerImage,
+                platformUserHandle: playerName,
+              },
+              segments: {
+                0: {
+                  stats: {
+                    kills: { value: totalKills },
+                    deaths: { value: totalDeaths },
+                    snipersKilled: { value: sniperKills },
+                    headshots: { value: headshotsKills },
+                    shotsAccuracy: { value: accuracyPercentage },
+                    kd: { displayValue: kdPercentage },
+                    timePlayed: { value: timePlayed },
+                  },
                 },
               },
-            },
-            knifeKills,
-          } = res.data.data;
-          let favoriteWeapon;
-          await api.get(`${playerID}/segments/weapon`).then((res) => {
-            const weapons = res.data.data;
-            favoriteWeapon = getWeaponMoreUsed(weapons);
-          });
-          let mapMostPlayed;
-          await api.get(`${playerID}/segments/map`).then((res) => {
-            const maps = res.data.data;
-            mapMostPlayed = getMapMostPlayed(maps);
-          });
-          return {
-            winner: index === 0 ? true : false,
-            playerImage,
-            playerName,
-            killsData: {
-              totalKills,
-              weaponsKills: [
-                {
-                  name: "sniper",
-                  kills: sniperKills,
-                },
-                {
-                  name: "headshots",
-                  kills: headshotsKills,
-                },
-              ],
-            },
-            totalDeaths,
-            accuracyPercentage,
-            kdPercentage,
-            timePlayed,
-            knifeKills,
-            favoriteWeapon,
-            mapMostPlayed,
-          };
-        }
-      });
+              knifeKills,
+            } = res.data.data;
+            let favoriteWeapon;
+            await api
+              .get(`${playerID}/segments/weapon`)
+              .then((res) => {
+                const weapons = res.data.data;
+                favoriteWeapon = getWeaponMoreUsed(weapons);
+              })
+              .catch(() => {
+                return history.push("/versus");
+              });
+            let mapMostPlayed;
+            await api
+              .get(`${playerID}/segments/map`)
+              .then((res) => {
+                const maps = res.data.data;
+                mapMostPlayed = getMapMostPlayed(maps);
+              })
+              .catch(() => {
+                return history.push("/versus");
+              });
+            return {
+              playerImage,
+              playerName,
+              killsData: {
+                totalKills,
+                weaponsKills: [
+                  {
+                    name: "sniper",
+                    kills: sniperKills,
+                  },
+                  {
+                    name: "headshots",
+                    kills: headshotsKills,
+                  },
+                ],
+              },
+              totalDeaths,
+              accuracyPercentage,
+              kdPercentage,
+              timePlayed,
+              knifeKills,
+              favoriteWeapon,
+              mapMostPlayed,
+            };
+          }
+        })
+        .catch(() => {
+          return history.push("/versus");
+        });
     });
-    await setPlayers(await Promise.all(players));
+    let newPlayers = (await Promise.all(players)).sort(
+      makeSorter((x) => x.killsData.totalKills, "desc")
+    );
+    newPlayers[0].winner = true;
+    setPlayers(newPlayers);
     setLoading(false);
   }
 

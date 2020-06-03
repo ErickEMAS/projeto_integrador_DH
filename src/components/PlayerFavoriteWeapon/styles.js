@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 export const FavoriteWeaponImage = styled.img`
   width: 100%;
-  max-width: 96px;
+  max-width: 100px;
   margin-bottom: 10px;
+  height: 50px;
+  object-fit: contain;
 `;
 
 export const PlayerFavoriteWeaponVersusContainer = styled.div`

@@ -51,7 +51,7 @@ export default function PlayerKD({
                   positiveColor={item.colorLight}
                   negativeColor={item.colorBlack}
                 >
-                  <p>{kdVersus ? kdVersus.toFixed(2) : 0}%</p>
+                  <p>{kdVersus}%</p>
                 </GraphicCount>
                 <PlayerKDText>
                   <PlayerKDTextIcon src={killsIcon} />
@@ -74,7 +74,7 @@ export default function PlayerKD({
             positiveColor={positiveColor}
             negativeColor={negativeColor}
           >
-            <p>{kdPersonal ? kdPersonal.toFixed(2) : 0}%</p>
+            <p>{kdPersonal}%</p>
           </GraphicCount>
           <PlayerKDText>
             <PlayerKDTextIcon src={killsIcon} />

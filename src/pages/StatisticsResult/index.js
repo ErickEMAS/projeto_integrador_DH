@@ -22,8 +22,7 @@ import loadingAnimationData from "../../assets/json/loading.json";
 export default function StatisticsResult() {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
-  // const { playerID } = useLocation();
-  const playerID = "76561197995625001";
+  const { playerID } = useLocation();
   const [player, setPlayer] = useState({
     playerImage: "",
     playerName: "",
@@ -41,55 +40,70 @@ export default function StatisticsResult() {
 
   function getPlayer() {
     if (playerID) {
-      api.get(playerID).then(async (res) => {
-        if (res && res.status === 200 && res.data && res.data.data) {
-          const {
-            platformInfo: {
-              avatarUrl: playerImage,
-              platformUserHandle: playerName,
-            },
-            segments: {
-              0: {
-                stats: {
-                  kills: { value: totalKills },
-                  deaths: { value: totalDeaths },
-                  snipersKilled: { value: sniperKills },
-                  headshots: { value: headshotsKills },
-                  shotsAccuracy: { value: accuracyPercentage },
-                  kd: { displayValue: kdPercentage },
-                  timePlayed: { value: timePlayed },
+      api
+        .get(playerID)
+        .then(async (res) => {
+          if (res && res.status === 200 && res.data && res.data.data) {
+            const {
+              platformInfo: {
+                avatarUrl: playerImage,
+                platformUserHandle: playerName,
+              },
+              segments: {
+                0: {
+                  stats: {
+                    kills: { value: totalKills },
+                    deaths: { value: totalDeaths },
+                    snipersKilled: { value: sniperKills },
+                    headshots: { value: headshotsKills },
+                    shotsAccuracy: { value: accuracyPercentage },
+                    kd: { displayValue: kdPercentage },
+                    timePlayed: { value: timePlayed },
+                  },
                 },
               },
-            },
-            knifeKills,
-          } = res.data.data;
-          let favoriteWeapon;
-          await api.get(`${playerID}/segments/weapon`).then((res) => {
-            const weapons = res.data.data;
-            favoriteWeapon = getWeaponMoreUsed(weapons);
-          });
-          let mapMostPlayed;
-          await api.get(`${playerID}/segments/map`).then((res) => {
-            const maps = res.data.data;
-            mapMostPlayed = getMapMostPlayed(maps);
-          });
-          setPlayer({
-            playerImage,
-            playerName,
-            totalKills,
-            totalDeaths,
-            sniperKills,
-            headshotsKills,
-            accuracyPercentage,
-            kdPercentage,
-            timePlayed,
-            knifeKills,
-            favoriteWeapon,
-            mapMostPlayed,
-          });
-          setLoading(false);
-        }
-      });
+              knifeKills,
+            } = res.data.data;
+            let favoriteWeapon;
+            await api
+              .get(`${playerID}/segments/weapon`)
+              .then((res) => {
+                const weapons = res.data.data;
+                favoriteWeapon = getWeaponMoreUsed(weapons);
+              })
+              .catch(() => {
+                return history.push("/statistics");
+              });
+            let mapMostPlayed;
+            await api
+              .get(`${playerID}/segments/map`)
+              .then((res) => {
+                const maps = res.data.data;
+                mapMostPlayed = getMapMostPlayed(maps);
+              })
+              .catch(() => {
+                return history.push("/statistics");
+              });
+            setPlayer({
+              playerImage,
+              playerName,
+              totalKills,
+              totalDeaths,
+              sniperKills,
+              headshotsKills,
+              accuracyPercentage,
+              kdPercentage,
+              timePlayed,
+              knifeKills,
+              favoriteWeapon,
+              mapMostPlayed,
+            });
+            setLoading(false);
+          }
+        })
+        .catch(() => {
+          return history.push("/statistics");
+        });
     } else {
       history.push("/statistics");
     }
